@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32922.545
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Presentation", "1.Presentation", "{9398D683-BDDB-4010-9886-D9BCA93DEA49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.Application", "2.Application", "{92582EA2-8A25-4A92-8220-8CB716FE8AB2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.Domain", "3.Domain", "{B7CB08A3-9584-4579-BB70-7864D1AAD22E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4.Infra", "4.Infra", "{1EE1BBFC-92AD-4FE7-AA96-F862FB602854}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dextermd.ITDeveloper.Mvc", "Dextermd.ITDeveloper.Mvc\Dextermd.ITDeveloper.Mvc.csproj", "{DC89A2DB-7F55-424D-94C9-D742A6D80AAF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DC89A2DB-7F55-424D-94C9-D742A6D80AAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC89A2DB-7F55-424D-94C9-D742A6D80AAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC89A2DB-7F55-424D-94C9-D742A6D80AAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC89A2DB-7F55-424D-94C9-D742A6D80AAF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DC89A2DB-7F55-424D-94C9-D742A6D80AAF} = {9398D683-BDDB-4010-9886-D9BCA93DEA49}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {32A5BDE2-6543-4508-924E-EA1EEFC5D6BF}
+	EndGlobalSection
+EndGlobal
