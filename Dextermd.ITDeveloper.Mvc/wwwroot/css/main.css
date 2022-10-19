@@ -1037,7 +1037,7 @@ body.fixed-right-sidebar:not(.fixed-header) #right-sidebar.rstop {
   left: 0;
   bottom: 0;
   top: 0;
-  padding-top: 50px;
+  padding-top: 30px;
   z-index: 2;
 }
 .page-sidebar:after {
@@ -1734,7 +1734,7 @@ body.fixed-right-sidebar:not(.fixed-header) #right-sidebar.rstop {
 ----------------------------------------- */
 .page-content {
   min-height: 100%;
-  padding-top: 50px;
+  padding-top: 30px;
 }
 .page-content.sidebar-page {
   margin-left: 210px;
