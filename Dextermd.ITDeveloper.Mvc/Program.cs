@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Routing.Template;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -19,6 +21,14 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "productlist",
+    pattern: "{controller=Product}/{action=List}/{id?}");
+
+app.MapControllerRoute(
+    name: "alternative",
+    pattern: "{controller=Product}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
