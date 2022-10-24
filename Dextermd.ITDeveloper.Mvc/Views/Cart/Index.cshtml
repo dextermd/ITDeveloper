@@ -1,0 +1,49 @@
+﻿@model Dextermd.ITDeveloper.Mvc.ViewModels.CartViewModel
+
+@{
+    ViewData["Title"] = "Shopping cart";
+}
+
+
+    <div class="row">
+        <div class="panel panel-heading">
+            <h3>Shoping Cart</h3>
+        </div>
+        <div class="panel panel-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Products</th>
+                        <th>Price</th>
+                        <th>Stock</th>
+                        <th>Validity</th>
+                        <th>In Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var prod in Model.Products)
+                    {
+                    <tr>
+                        <td>@prod.Name</td>
+                        <td>@prod.Price</td>
+                        <td>@prod.Stock</td>
+                        <td>@prod.ExpirationDate</td>
+                        <td>@prod.InStock</td>
+                    </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td><strong>Total: </strong></td>
+                        <td><strong>@Model.TotalCartPrice</strong></td>
+                    </tr>
+                </tfoot>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+            <h3>
+                @Model.Message
+            </h3>
+        </div>
+    </div>
