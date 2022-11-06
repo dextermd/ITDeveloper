@@ -1,0 +1,87 @@
+﻿@model Dextermd.ITDeveloper.Domain.Models.Pacient
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Pacient</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HospitalizationDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HospitalizationDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Active)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Active)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cpf)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TypePacient)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TypePacient)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Rg)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Rg)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RgOrgan)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RgOrgan)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RgIssueDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RgIssueDate)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-default" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

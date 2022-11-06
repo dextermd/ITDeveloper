@@ -6,12 +6,12 @@ using NuGet.Protocol.Core.Types;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddDbContext<ITDeveloperDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DefaultITDeveloper")
-    ));
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<ITDeveloperDbContext>(options =>
+  options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultITDeveloper"))
+);
 
 var app = builder.Build();
 
