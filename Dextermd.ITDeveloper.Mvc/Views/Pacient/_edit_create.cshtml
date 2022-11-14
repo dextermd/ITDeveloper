@@ -1,0 +1,66 @@
+﻿@using Dextermd.ITDeveloper.Domain.Enums
+@model Dextermd.ITDeveloper.Domain.Models.Pacient
+
+<div class="form-group">
+    <label asp-for="Name" class="control-label"></label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="BirthDate" class="control-label"></label>
+    <input asp-for="BirthDate" class="form-control" />
+    <span asp-validation-for="BirthDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="HospitalizationDate" class="control-label"></label>
+    <input asp-for="HospitalizationDate" class="form-control" />
+    <span asp-validation-for="HospitalizationDate" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="Email" class="control-label"></label>
+    <input asp-for="Email" class="form-control" />
+    <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <div class="checkbox">
+        <label>
+            <input asp-for="Active" /> @Html.DisplayNameFor(model => model.Active)
+        </label>
+    </div>
+</div>
+<div class="form-group">
+    <label asp-for="Cpf" class="control-label"></label>
+    <input asp-for="Cpf" class="form-control" />
+    <span asp-validation-for="Cpf" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="TypePacient" class="control-label"></label>
+    <select asp-for="TypePacient" asp-items="Html.GetEnumSelectList<TypePacient>()" class="form-control">
+        <option value""></option>
+    </select>
+    <span asp-validation-for="TypePacient" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Sex" class="control-label"></label>
+    <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control">
+        <option selected="selected" value="">Выберите пол</option>
+    </select>
+    <span asp-validation-for="Sex" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Rg" class="control-label"></label>
+    <input asp-for="Rg" class="form-control" />
+    <span asp-validation-for="Rg" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="RgOrgan" class="control-label"></label>
+    <input asp-for="RgOrgan" class="form-control" />
+    <span asp-validation-for="RgOrgan" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="RgIssueDate" class="control-label"></label>
+    <input asp-for="RgIssueDate" class="form-control" />
+    <span asp-validation-for="RgIssueDate" class="text-danger"></span>
+</div>
