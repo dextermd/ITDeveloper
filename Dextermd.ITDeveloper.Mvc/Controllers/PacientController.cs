@@ -49,24 +49,21 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             return View();
         }
 
-        // POST: Pacient/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Name,BirthDate,HospitalizationDate,Email,Active,Cpf,TypePacient,Sex,Rg,RgOrgan,RgIssueDate,Id")] Pacient pacient)
+        public async Task<IActionResult> Create(Pacient pacient)
         {
             if (ModelState.IsValid)
             {
-                pacient.Id = Guid.NewGuid();
+                //pacient.Id = Guid.NewGuid();
                 _context.Add(pacient);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
+                return RedirectToAction("Index");
             }
             return View(pacient);
         }
 
-        // GET: Pacient/Edit/5
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null || _context.Pacient == null)
@@ -82,12 +79,10 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             return View(pacient);
         }
 
-        // POST: Pacient/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("Name,BirthDate,HospitalizationDate,Email,Active,Cpf,TypePacient,Sex,Rg,RgOrgan,RgIssueDate,Id")] Pacient pacient)
+        public async Task<IActionResult> Edit(Guid id, Pacient pacient)
         {
             if (id != pacient.Id)
             {
@@ -117,7 +112,6 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             return View(pacient);
         }
 
-        // GET: Pacient/Delete/5
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null || _context.Pacient == null)
@@ -135,7 +129,6 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             return View(pacient);
         }
 
-        // POST: Pacient/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)

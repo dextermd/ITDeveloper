@@ -1,4 +1,5 @@
-﻿@model Dextermd.ITDeveloper.Domain.Models.Pacient
+﻿@using Dextermd.ITDeveloper.Domain.Enums
+@model Dextermd.ITDeveloper.Domain.Models.Pacient
 
 @{
     ViewData["Title"] = "Create";
@@ -46,14 +47,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="TypePacient" class="control-label"></label>
-                <select asp-for="TypePacient" class="form-control"></select>
+                <select asp-for="TypePacient" asp-items="Html.GetEnumSelectList<TypePacient>()" class="form-control">
+                    <option value""></option>
+                </select>
                 <span asp-validation-for="TypePacient" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Sex" class="control-label"></label>
-                <select asp-for="Sex" class="form-control"></select>
+                <select asp-for="Sex" asp-items="Html.GetEnumSelectList<Sex>()" class="form-control">
+                    <option selected="selected" value="">Выберите пол</option>
+                </select>
                 <span asp-validation-for="Sex" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Rg" class="control-label"></label>
                 <input asp-for="Rg" class="form-control" />
