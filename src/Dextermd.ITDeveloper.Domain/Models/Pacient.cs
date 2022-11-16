@@ -2,6 +2,8 @@
 using Dextermd.ITDeveloper.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,12 +13,12 @@ namespace Dextermd.ITDeveloper.Domain.Models
     public class Pacient : EntityBase
     {
 
-        public Pacient()
-        {
-            this.HospitalizationDate = DateTime.Now;
-            Active = true;
-        }
+        public Pacient(){ Active = true; }
 
+        [ForeignKey("PacientStatus")]
+        [Display(Name = "Pacient Status")]
+        public Guid PacientStatusId { get; set; }
+        public virtual PacientStatus PacientStatus { get; set; }
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HospitalizationDate { get; set; }

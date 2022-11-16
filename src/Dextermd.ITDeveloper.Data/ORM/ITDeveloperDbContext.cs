@@ -21,5 +21,7 @@ namespace Dextermd.ITDeveloper.Data.ORM
         public DbSet<Mural> Mural { get; set; }
 
         public DbSet<Pacient> Pacient { get; set; }
+
+        public DbSet<PacientStatus> PacientStatus { get; set; }
     }
 }

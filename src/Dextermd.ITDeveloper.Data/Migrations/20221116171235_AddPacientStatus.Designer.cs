@@ -4,6 +4,7 @@ using Dextermd.ITDeveloper.Data.ORM;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Dextermd.ITDeveloper.Data.Migrations
 {
     [DbContext(typeof(ITDeveloperDbContext))]
-    partial class ITDeveloperDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221116171235_AddPacientStatus")]
+    partial class AddPacientStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -81,9 +83,6 @@ namespace Dextermd.ITDeveloper.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid>("PacientStatusId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Rg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -103,8 +102,6 @@ namespace Dextermd.ITDeveloper.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PacientStatusId");
-
                     b.ToTable("Pacient");
                 });
 
@@ -122,17 +119,6 @@ namespace Dextermd.ITDeveloper.Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PacientStatus");
-                });
-
-            modelBuilder.Entity("Dextermd.ITDeveloper.Domain.Models.Pacient", b =>
-                {
-                    b.HasOne("Dextermd.ITDeveloper.Domain.Models.PacientStatus", "PacientStatus")
-                        .WithMany()
-                        .HasForeignKey("PacientStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("PacientStatus");
                 });
 #pragma warning restore 612, 618
         }

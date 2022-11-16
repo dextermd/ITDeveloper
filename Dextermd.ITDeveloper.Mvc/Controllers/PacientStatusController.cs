@@ -10,81 +10,82 @@ using Dextermd.ITDeveloper.Domain.Models;
 
 namespace Dextermd.ITDeveloper.Mvc.Controllers
 {
-    public class PacientController : Controller
+    public class PacientStatusController : Controller
     {
         private readonly ITDeveloperDbContext _context;
 
-        public PacientController(ITDeveloperDbContext context)
+        public PacientStatusController(ITDeveloperDbContext context)
         {
             _context = context;
         }
 
-        // GET: Pacient
+
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pacient.Include(x => x.PacientStatus).AsNoTracking().ToArrayAsync());
+              return View(await _context.PacientStatus.ToListAsync());
         }
 
-        // GET: Pacient/Details/5
+
         public async Task<IActionResult> Details(Guid? id)
         {
-            if (id == null || _context.Pacient == null)
+            if (id == null || _context.PacientStatus == null)
             {
                 return NotFound();
             }
 
-            var pacient = await _context.Pacient
+            var pacientStatus = await _context.PacientStatus
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (pacient == null)
+            if (pacientStatus == null)
             {
                 return NotFound();
             }
 
-            return View(pacient);
+            return View(pacientStatus);
         }
 
-        // GET: Pacient/Create
+
         public IActionResult Create()
         {
             return View();
         }
 
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Pacient pacient)
+        public async Task<IActionResult> Create([Bind("Description,Id")] PacientStatus pacientStatus)
         {
             if (ModelState.IsValid)
             {
-                //pacient.Id = Guid.NewGuid();
-                _context.Add(pacient);
+                pacientStatus.Id = Guid.NewGuid();
+                _context.Add(pacientStatus);
                 await _context.SaveChangesAsync();
-                //return RedirectToAction(nameof(Index));
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
-            return View(pacient);
+            return View(pacientStatus);
         }
+
 
         public async Task<IActionResult> Edit(Guid? id)
         {
-            if (id == null || _context.Pacient == null)
+            if (id == null || _context.PacientStatus == null)
             {
                 return NotFound();
             }
 
-            var pacient = await _context.Pacient.FindAsync(id);
-            if (pacient == null)
+            var pacientStatus = await _context.PacientStatus.FindAsync(id);
+            if (pacientStatus == null)
             {
                 return NotFound();
             }
-            return View(pacient);
+            return View(pacientStatus);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Pacient pacient)
+        public async Task<IActionResult> Edit(Guid id, [Bind("Description,Id")] PacientStatus pacientStatus)
         {
-            if (id != pacient.Id)
+            if (id != pacientStatus.Id)
             {
                 return NotFound();
             }
@@ -93,12 +94,12 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             {
                 try
                 {
-                    _context.Update(pacient);
+                    _context.Update(pacientStatus);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PacientExists(pacient.Id))
+                    if (!PacientStatusExists(pacientStatus.Id))
                     {
                         return NotFound();
                     }
@@ -109,47 +110,49 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(pacient);
+            return View(pacientStatus);
         }
+
 
         public async Task<IActionResult> Delete(Guid? id)
         {
-            if (id == null || _context.Pacient == null)
+            if (id == null || _context.PacientStatus == null)
             {
                 return NotFound();
             }
 
-            var pacient = await _context.Pacient
+            var pacientStatus = await _context.PacientStatus
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (pacient == null)
+            if (pacientStatus == null)
             {
                 return NotFound();
             }
 
-            return View(pacient);
+            return View(pacientStatus);
         }
+
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
-            if (_context.Pacient == null)
+            if (_context.PacientStatus == null)
             {
-                return Problem("Entity set 'ITDeveloperDbContext.Pacient'  is null.");
+                return Problem("Entity set 'ITDeveloperDbContext.PacientStatus'  is null.");
             }
-            var pacient = await _context.Pacient.FindAsync(id);
-            if (pacient != null)
+            var pacientStatus = await _context.PacientStatus.FindAsync(id);
+            if (pacientStatus != null)
             {
-                _context.Pacient.Remove(pacient);
+                _context.PacientStatus.Remove(pacientStatus);
             }
             
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PacientExists(Guid id)
+        private bool PacientStatusExists(Guid id)
         {
-          return _context.Pacient.Any(e => e.Id == id);
+          return _context.PacientStatus.Any(e => e.Id == id);
         }
     }
 }
