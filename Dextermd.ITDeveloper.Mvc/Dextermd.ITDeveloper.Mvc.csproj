@@ -20,4 +20,10 @@
     <ProjectReference Include="..\src\Dextermd.ITDeveloper.Data\Dextermd.ITDeveloper.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewComponents\HeaderModules\" />
+    <Folder Include="ViewComponents\Helpers\" />
+    <Folder Include="ViewComponents\PacientStatus\" />
+  </ItemGroup>
+
 </Project>

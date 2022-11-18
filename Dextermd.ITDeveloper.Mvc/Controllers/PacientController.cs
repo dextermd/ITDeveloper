@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Dextermd.ITDeveloper.Data.ORM;
+using Dextermd.ITDeveloper.Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Dextermd.ITDeveloper.Data.ORM;
-using Dextermd.ITDeveloper.Domain.Models;
+using System.Diagnostics;
 
 namespace Dextermd.ITDeveloper.Mvc.Controllers
 {
@@ -19,21 +16,20 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             _context = context;
         }
 
-        // GET: Pacient
+
         public async Task<IActionResult> Index()
         {
-              return View(await _context.Pacient.Include(x => x.PacientStatus).AsNoTracking().ToArrayAsync());
+            return View(await _context.Pacient.Include(x => x.PacientStatus).AsNoTracking().ToListAsync());
         }
 
-        // GET: Pacient/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        public async Task<IActionResult> Details(Guid id)
         {
             if (id == null || _context.Pacient == null)
             {
                 return NotFound();
             }
 
-            var pacient = await _context.Pacient
+            var pacient = await _context.Pacient.Include(x => x.PacientStatus).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pacient == null)
             {
@@ -43,9 +39,10 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             return View(pacient);
         }
 
-        // GET: Pacient/Create
+
         public IActionResult Create()
         {
+            ViewBag.PacientStatus = new SelectList(_context.PacientStatus, "Id", "Description");
             return View();
         }
 
@@ -61,6 +58,7 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
                 //return RedirectToAction(nameof(Index));
                 return RedirectToAction("Index");
             }
+            ViewBag.PacientStatus = new SelectList(_context.PacientStatus, "Id", "Description", pacient.PacientStatusId);
             return View(pacient);
         }
 
@@ -72,18 +70,22 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             }
 
             var pacient = await _context.Pacient.FindAsync(id);
+
             if (pacient == null)
             {
                 return NotFound();
             }
+
+            ViewBag.PacientStatus = new SelectList(_context.PacientStatus, "Id", "Description", pacient.PacientStatusId);
             return View(pacient);
         }
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Pacient pacient)
+        public async Task<IActionResult> Edit(Guid? id, Pacient pacient)
         {
+            Debug.WriteLine("Go go go go go   " + pacient.PacientStatus);
             if (id != pacient.Id)
             {
                 return NotFound();
@@ -109,17 +111,19 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.PacientStatus = new SelectList(_context.PacientStatus, "Id", "Description", pacient.PacientStatusId);
             return View(pacient);
         }
 
-        public async Task<IActionResult> Delete(Guid? id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             if (id == null || _context.Pacient == null)
             {
                 return NotFound();
             }
 
-            var pacient = await _context.Pacient
+            var pacient = await _context.Pacient.Include(x => x.PacientStatus).AsNoTracking()
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (pacient == null)
             {
@@ -142,14 +146,14 @@ namespace Dextermd.ITDeveloper.Mvc.Controllers
             {
                 _context.Pacient.Remove(pacient);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool PacientExists(Guid id)
         {
-          return _context.Pacient.Any(e => e.Id == id);
+            return _context.Pacient.Any(e => e.Id == id);
         }
     }
 }

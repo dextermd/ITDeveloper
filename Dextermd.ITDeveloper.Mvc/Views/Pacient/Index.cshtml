@@ -43,6 +43,11 @@
                     <th>
                         @Html.DisplayNameFor(model => model.Sex)
                     </th>
+
+                    <th>
+                        @Html.DisplayNameFor(model => model.PacientStatus.Description)
+                    </th>
+
                     @*<th>
                         @Html.DisplayNameFor(model => model.Rg)
                     </th>
@@ -84,6 +89,10 @@
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.Sex)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PacientStatus.Description)
                         </td>
                         @*<td>
                             @Html.DisplayFor(modelItem => item.Rg)
