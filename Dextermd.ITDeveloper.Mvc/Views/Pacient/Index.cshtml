@@ -1,16 +1,24 @@
 ﻿@model IEnumerable<Dextermd.ITDeveloper.Domain.Models.Pacient>
 
 @{
-    ViewData["Title"] = "Pacients List";
+    ViewData["Title"] = "Pacient List";
 }
 
-<div class="row">
+
+<vc:header-modules 
+    title="Medical Management-Sys / Pacients Module"
+    subtitle="Administration Pacient Module"></vc:header-modules>
+
+<partial name="PartialView/_pacient_status" />
+
+
+<div class="panel panel-default panel-controls">
     <div class="panel panel-heading">
-        <h3>Pacients List</h3>
+        <h3>Pacient List</h3>
     </div>
 
+    <div class="panel-body">
 
-    <div class="panel panel-body">
         <p>
             <a asp-controller="Pacient" asp-action="Create" class="btn btn-info"><span class="fa fa-plus-circle"</span>&nbsp;&nbsp; Add Pacient </a>
         </p>

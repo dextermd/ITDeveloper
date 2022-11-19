@@ -22,7 +22,8 @@ namespace Dextermd.ITDeveloper.Data.Migrations
                 table: "Pacient",
                 type: "uniqueidentifier",
                 nullable: false,
-                defaultValue: new Guid("b00166cd-7b1c-436a-9a92-4f3d31448d5b"));
+                //defaultValue: new Guid("b00166cd-7b1c-436a-9a92-4f3d31448d5b")); //Job
+                defaultValue: new Guid("ccceb29a-0287-4874-9046-4e3f4f8320a2")); //Home
 
             migrationBuilder.AddPrimaryKey(
                 name: "PK_PacientStatus",

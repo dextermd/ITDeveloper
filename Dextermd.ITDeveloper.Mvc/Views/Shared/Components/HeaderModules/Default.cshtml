@@ -1,22 +1,24 @@
-﻿<!-- .page-content-inner -->
+﻿@using Dextermd.ITDeveloper.Mvc.Extensions.ViewComponents.Helpers
+
+@model Module
+
 <div id="page-header" class="clearfix">
     <div class="page-header">
-        <h2>Dashboard</h2>
-        <span class="txt">Welcome to Dynamic admin</span>
+        <h2>@Model.Title</h2>
+        <span class="txt">@Model.Subtitle</span>
     </div>
     <div class="header-stats">
         <div class="spark clearfix">
-            <div class="spark-info"><span class="number">2345</span>Visitors</div>
+            <div class="spark-info"><span class="number">2345</span>Record</div>
             <div id="spark-visitors" class="sparkline"></div>
         </div>
         <div class="spark clearfix">
-            <div class="spark-info"><span class="number">17345</span>Views</div>
+            <div class="spark-info"><span class="number">17345</span>Evolution</div>
             <div id="spark-templateviews" class="sparkline"></div>
         </div>
         <div class="spark clearfix">
-            <div class="spark-info"><span class="number">3700$</span>Sales</div>
+            <div class="spark-info"><span class="number">3700$</span>Transfers</div>
             <div id="spark-sales" class="sparkline"></div>
         </div>
     </div>
 </div>
-<!-- / .page-content-inner -->
