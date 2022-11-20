@@ -1,4 +1,5 @@
-﻿using Dextermd.ITDeveloper.Domain.Entities;
+﻿using Dextermd.ITDeveloper.Data.Mapping;
+using Dextermd.ITDeveloper.Domain.Entities;
 using Dextermd.ITDeveloper.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -23,5 +24,33 @@ namespace Dextermd.ITDeveloper.Data.ORM
         public DbSet<Pacient> Pacient { get; set; }
 
         public DbSet<PacientStatus> PacientStatus { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new PacientStatusMap());
+            modelBuilder.ApplyConfiguration(new PacientMap());
+
+/*            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ITDeveloperDbContext).Assembly);*/
+
+
+/*            foreach (var property in modelBuilder
+               .Model
+               .GetEntityTypes()
+               .SelectMany(
+                  e => e.GetProperties()
+                     .Where(p => p.ClrType == typeof(string))))
+            {
+                property.SetColumnType("varchar(100)");
+            }
+
+            
+
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.ClientSetNull;
+            }*/
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

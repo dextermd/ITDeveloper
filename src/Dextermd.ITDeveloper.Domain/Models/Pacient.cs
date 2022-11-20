@@ -2,6 +2,7 @@
 using Dextermd.ITDeveloper.Domain.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -19,6 +20,8 @@ namespace Dextermd.ITDeveloper.Domain.Models
         [Display(Name = "Pacient Status")]
         public Guid PacientStatusId { get; set; }
         public virtual PacientStatus? PacientStatus { get; set; }
+
+        [DisplayName(displayName: "Pacient Name")]
         public string Name { get; set; }
         public DateTime BirthDate { get; set; }
         public DateTime HospitalizationDate { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Dextermd.ITDeveloper.Data.ORM;
 using Dextermd.ITDeveloper.Domain.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -7,6 +8,7 @@ using System.Diagnostics;
 
 namespace Dextermd.ITDeveloper.Mvc.Controllers
 {
+    [Authorize(Roles = "Administrotor")]
     public class PacientController : Controller
     {
         private readonly ITDeveloperDbContext _context;

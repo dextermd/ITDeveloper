@@ -32,22 +32,22 @@ namespace Dextermd.ITDeveloper.Data.Migrations
 
                     b.Property<string>("Author")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<DateTime>("Data")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Notification")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.Property<string>("Title")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)");
 
                     b.HasKey("MuralId");
 
@@ -68,32 +68,40 @@ namespace Dextermd.ITDeveloper.Data.Migrations
 
                     b.Property<string>("Cpf")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(11)
+                        .HasColumnType("varchar(11)")
+                        .HasColumnName("Cpf")
+                        .IsFixedLength();
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Email");
 
                     b.Property<DateTime>("HospitalizationDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("Name");
 
                     b.Property<Guid>("PacientStatusId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Rg")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("varchar(15)")
+                        .HasColumnName("Rg");
 
                     b.Property<DateTime>("RgIssueDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("RgOrgan")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varchar(100)")
+                        .HasColumnName("RgOrgan");
 
                     b.Property<int>("Sex")
                         .HasColumnType("int");
@@ -105,7 +113,7 @@ namespace Dextermd.ITDeveloper.Data.Migrations
 
                     b.HasIndex("PacientStatusId");
 
-                    b.ToTable("Pacient");
+                    b.ToTable("Pacient", (string)null);
                 });
 
             modelBuilder.Entity("Dextermd.ITDeveloper.Domain.Models.PacientStatus", b =>
@@ -117,22 +125,27 @@ namespace Dextermd.ITDeveloper.Data.Migrations
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("varchar(20)")
+                        .HasColumnName("Description");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PacientStatus");
+                    b.ToTable("PacientStatus", (string)null);
                 });
 
             modelBuilder.Entity("Dextermd.ITDeveloper.Domain.Models.Pacient", b =>
                 {
                     b.HasOne("Dextermd.ITDeveloper.Domain.Models.PacientStatus", "PacientStatus")
-                        .WithMany()
+                        .WithMany("Pacient")
                         .HasForeignKey("PacientStatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PacientStatus");
+                });
+
+            modelBuilder.Entity("Dextermd.ITDeveloper.Domain.Models.PacientStatus", b =>
+                {
+                    b.Navigation("Pacient");
                 });
 #pragma warning restore 612, 618
         }

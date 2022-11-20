@@ -15,5 +15,7 @@ namespace Dextermd.ITDeveloper.Domain.Models
         [Required(ErrorMessage = "Поле {0} обязательно для заполнения")]
         [StringLength(maximumLength: 20, ErrorMessage = "Поле {0} должно иметь минимум {2} и максимум {1} символ(a).", MinimumLength = 2)]
         public string Description { get; set; }
+
+        public virtual ICollection<Pacient> Pacient { get; set; }
     }
 }

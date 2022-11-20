@@ -12,9 +12,7 @@ namespace Dextermd.ITDeveloper.Mvc.Extensions.ViewComponents.Helpers
 
         public static decimal GetNumRegStatus(ITDeveloperDbContext context, string status)
         {
-            return context.Pacient
-                .Include( x => x.PacientStatus)
-                .AsNoTracking()
+            return context.Pacient.AsNoTracking()
                 .Count( x => x.PacientStatus.Description.Contains(status));
         }
     }
