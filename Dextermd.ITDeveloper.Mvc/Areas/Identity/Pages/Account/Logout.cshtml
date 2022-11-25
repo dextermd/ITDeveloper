@@ -1,21 +1,101 @@
 ﻿@page
 @model LogoutModel
 @{
+    Layout = null;
     ViewData["Title"] = "Log out";
 }
 
-<header>
-    <h1>@ViewData["Title"]</h1>
-    @{
-        if (User.Identity.IsAuthenticated)
-        {
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
-                <button type="submit" class="nav-link btn btn-link text-dark">Click here to Logout</button>
-            </form>
-        }
-        else
-        {
-            <p>You have successfully logged out of the application.</p>
-        }
-    }
-</header>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"] - EAD - ITDeveloper</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="application-name" content="" />
+
+    <link href="~/bundle/core.min.css" rel="stylesheet" />
+
+
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/img/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="icon" href="~/img/ico/favicon.ico" type="image/png">
+
+    <meta name="msapplication-TileColor" content="#3399cc" />
+</head>
+
+<body class="login-page">
+    <div class="container login-container">
+        <div class="login-panel panel panel-default plain animated bounceIn">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">
+                    <img id="logo" src="~/img/logo-dark.png" alt="EAD ITDeveloper">
+                </h4>
+            </div>
+
+
+
+            <div class="panel-body">
+
+                <div class="seperator">
+                    <strong>Exit Screen</strong>
+                    <hr>
+                </div>
+
+
+                <h4 class="text-center">
+                    <strong>Already registered?</strong>
+                </h4>
+                <p class="text-center">
+                    <a asp-page="./Login" asp-page="/Account/Login" class="btn btn-primary">Login</a>
+                </p>
+
+                <div class="seperator">
+                    <strong>or</strong>
+                    <hr>
+                </div>
+
+                <div class="social-buttons text-center mt5 mb5">
+                    <a href="" class="btn btn-primary btn-alt mr10">Log In <i class="fa fa-facebook s20 ml5 mr0"></i></a>
+                    <a href="" class="btn btn-danger btn-alt ml10">Log In <i class="fa fa-google-plus s20 ml5 mr0"></i></a>
+                </div>
+            </div>
+
+
+            <div class="panel-footer gray-lighter-bg bt">
+                <h4 class="text-center">
+                    <strong>Not registered?</strong>
+                </h4>
+                <p class="text-center">
+                    <a asp-page="./Register" asp-page="/Account/Register" class="btn btn-primary">Registration</a>
+                </p>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer">
+            <p class="text-center">&copy; 2007 / @DateTime.Now.Year - Dextermd. All rights reserved!</p>
+        </div>
+    </div>
+
+    <script src="/jquery/jquery.js"></script>
+    <script src="/jquery/jquery-ui.js"></script>
+
+    <script src="~/js/bootstrap/bootstrap.js"></script>
+    <script src="~/plugins/forms/validation/jquery.validate.js"></script>
+    <script src="~/plugins/forms/validation/additional-methods.min.js"></script>
+    <script src="~/js/pages/login.js"></script>
+</body>
+</html>

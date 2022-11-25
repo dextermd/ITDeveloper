@@ -1,85 +1,161 @@
-﻿@page
+﻿
+@page
 @model LoginModel
 
 @{
-    ViewData["Title"] = "Log in";
+    Layout = "";
+    ViewData["Title"] = "LogIn";
 }
 
-<h2>@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-4">
-        <section>
-            <form id="account" method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
-                    <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
-                    <span asp-validation-for="Input.Password" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                    <p>
-                        <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
-                    </p>
-                </div>
-            </form>
-        </section>
-    </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"] - EAD - ITDeveloper</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1 user-scalable=no">
+    <meta name="author" content="" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="application-name" content="" />
+
+
+    <link href="/bundle/core.min.css" rel="stylesheet" />
+
+
+
+
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/img/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/img/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/img/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="icon" href="/img/ico/favicon.ico" type="image/png">
+    <meta name="msapplication-TileColor" content="#3399cc" />
+</head>
+
+<body class="login-page">
+    <div class="container login-container">
+        <div class="login-panel panel panel-default plain animated bounceIn">
+            <div class="panel-heading">
+                <h4 class="panel-title text-center">
+                    <img id="logo" src="/img/logo-dark.png" alt="EAD ITDeveloper">
+                </h4>
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal mt0" id="login-form" role="form" method="post">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+
+
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="input-group input-icon">
+                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                <input asp-for="Input.Email" class="form-control" placeholder="Type your e-mail..." />
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
                         </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-12">
+                            <div class="input-group input-icon">
+                                <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                <input asp-for="Input.Password" class="form-control" placeholder="Type your password..." />
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+                            </div>
+                            <span class="help-block text-right"><a asp-page="./ForgotPassword">Forgot password?</a></span>
 
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group mb0">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-8">
+                            <div class="checkbox-custom">
+                                <input type="checkbox" name="remember" id="remember" asp-for="Input.RememberMe">
+
+                                <label for="remember">Remember me</label>
+
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-4 mb25">
+                            <button type="submit" class="btn btn-default pull-right">LogIn</button>
+                        </div>
+
+                        <div class="seperator">
+                            <strong>External LogIn</strong>
+                            <hr>
+                        </div>
+
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <section>
+                                @{
+                                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                                    {
+                                        <p>
+                                            There is no External Authentication service configured. read <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article </a>and learn more!
+                                        </p>
+                                    }
+                                    else
+                                    {
+                                        <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <p>
+                                                    @foreach (var provider in Model.ExternalLogins)
+                                                    {
+                                                        <button type="submit" class="btn btn-default pull-right" name="provider" value="@provider.Name" title="LogIn your account @provider.DisplayName">@provider.DisplayName</button>
+                                                    }
+                                                </p>
+                                            </div>
+                                        </form>
+                                    }
+                                }
+                            </section>
+                        </div>
+                    </div>
+
+                </form>
+
+
+                <div class="seperator">
+                    <strong>or</strong>
+                    <hr>
+                </div>
+                <div class="social-buttons text-center mt5 mb5">
+                    <a href="#" class="btn btn-primary btn-alt mr10">LogIn with <i class="fa fa-facebook s20 ml5 mr0"></i></a>
+                    <a href="#" class="btn btn-danger btn-alt ml10">LogIn with <i class="fa fa-google-plus s20 ml5 mr0"></i></a>
+                </div>
+            </div>
+            <div class="panel-footer gray-lighter-bg bt">
+                <h4 class="text-center">
+                    <strong>Not registered?</strong>
+                </h4>
+                <p class="text-center">
+                    <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-primary">Register</a>
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="footer">
+            <p class="text-center">&copy;  @DateTime.Now.Year - Dextermd. All rights reserved!</p>
+        </div>
+    </div>
+
+
+
+    <script src="/jquery/jquery.js"></script>
+    <script src="/jquery/jquery-ui.js"></script>
+
+    <script src="/js/bootstrap/bootstrap.js"></script>
+
+    <script src="/plugins/forms/validation/jquery.validate.js"></script>
+    <script src="/plugins/forms/validation/additional-methods.min.js"></script>
+
+    <script src="/js/pages/login.js"></script>
+</body>
+</html>

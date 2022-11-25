@@ -1,0 +1,27 @@
+﻿@using Dextermd.ITDeveloper.Mvc.Extensions.ExtensionsMethods
+@model IEnumerable<Dextermd.ITDeveloper.Domain.Models.Pacient>
+
+@{
+    ViewData["Title"] = "Auditing System";
+}
+
+
+<vc:header-modules 
+    title="Medical Management-Sys / Logger Module"
+        subtitle="Auditing System"></vc:header-modules>
+
+<partial name="PartialView/_pacient_status" />
+
+
+<div class="panel panel-default panel-controls">
+    <div class="panel panel-heading">
+        <h3>Auditing System</h3>
+    </div>
+
+    <div class="panel-body">
+
+        <h3>@ViewData["msgLogger"]</h3>
+
+    </div>
+</div>
+
